@@ -1,0 +1,1 @@
+# yaimafuni-weather-batch
