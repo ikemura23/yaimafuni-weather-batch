@@ -13,8 +13,9 @@ repositories {
 }
 val ktorVersion = "2.2.1"
 dependencies {
-    implementation("io.ktor:ktor-client-core: $ktorVersion")
-    implementation("io.ktor:ktor-client-okhttp: $ktorVersion")
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+    implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
     testImplementation(kotlin("test"))
 }
 
