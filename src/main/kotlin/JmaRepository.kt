@@ -19,5 +19,3 @@ class JmaRepository(
         println("timeSeriesWeather: $timeSeriesWeather")
     }
 }
-
-
