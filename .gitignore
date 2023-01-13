@@ -31,6 +31,7 @@ build/
 .idea/libraries/Maven*.xml
 .idea/artifacts/PILL_*.xml
 .idea/artifacts/KotlinPlugin.xml
+.idea/workspace.xml
 .idea/modules
 .idea/runConfigurations/JPS_*.xml
 .idea/runConfigurations/PILL_*.xml
