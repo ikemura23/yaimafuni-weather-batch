@@ -1,8 +1,8 @@
-import service.TimeSeriesWeatherService
+import service.TimeSeriesService
 
 fun main() {
     val repository = JmaRepository(
         HttpClientProvider
     )
-    TimeSeriesWeatherService(repository).start()
+    TimeSeriesService(repository).start()
 }

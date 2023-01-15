@@ -1,13 +1,12 @@
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import model.TimeSeriesWeatherItem
 
 /**
  * 気象庁のAPIと通信するRepository
  */
 class JmaRepository(
     private val httpClientProvider: HttpClientProvider,
-    private val mapper: TimeSeriesWeatherMapper = TimeSeriesWeatherMapper()
+    private val mapper: TimeSeriesMapper = TimeSeriesMapper()
 ) {
     suspend fun fetch() {
         val client = httpClientProvider.create()

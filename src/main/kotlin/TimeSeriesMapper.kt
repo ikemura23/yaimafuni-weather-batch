@@ -1,5 +1,5 @@
-import model.TimeSeriesWeather
-import model.TimeSeriesWeatherItem
+import model.TimeSeries
+import model.TimeSeriesItem
 import model.Wind
 import org.json.JSONArray
 import org.json.JSONObject
@@ -8,10 +8,10 @@ import org.json.JSONObject
  * 地域時系列予報をmodelに変換する
  * https://www.jma.go.jp/bosai/wdist/timeseries.html#area_type=offices&area_code=474000
  */
-class TimeSeriesWeatherMapper(
+class TimeSeriesMapper(
     private val isDebug: Boolean = false
 ) {
-    fun fromJson(jsonString: String): TimeSeriesWeather {
+    fun fromJson(jsonString: String): TimeSeries {
         val jsonObject = JSONObject(jsonString)
         if (isDebug) println("jsonObject: $jsonObject")
 
@@ -30,17 +30,17 @@ class TimeSeriesWeatherMapper(
         // 発表時間
         val reportDateTime = getReportDateTime(jsonObject)
 
-        val timeSeriesWeatherItemList: List<TimeSeriesWeatherItem> = List(dateTimeList.size) { i ->
-            TimeSeriesWeatherItem(
+        val timeSeriesItemLists: List<TimeSeriesItem> = List(dateTimeList.size) { i ->
+            TimeSeriesItem(
                 dateTime = dateTimeList[i],
                 weather = weatherList[i],
-                wind = windList[i],
+                wind = windList[i]
             )
         }
-        return TimeSeriesWeather(
-            values = timeSeriesWeatherItemList,
+        return TimeSeries(
+            values = timeSeriesItemLists,
             publishingOffice = publishingOffice,
-            reportDateTime = reportDateTime,
+            reportDateTime = reportDateTime
         )
     }
 
@@ -83,7 +83,7 @@ class TimeSeriesWeatherMapper(
             Wind(
                 direction = jo.getString("direction"),
                 speed = jo.getInt("speed"),
-                range = jo.getString("range"),
+                range = jo.getString("range")
             )
         }
         println("windList: size ${windList.size} $windList")

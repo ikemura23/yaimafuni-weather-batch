@@ -1,6 +1,6 @@
 package model
 
-data class TimeSeriesWeatherItem(
+data class TimeSeriesItem(
     // 時間
     val dateTime: String,
     // 天気（晴れ、くもり など）
