@@ -1,5 +1,5 @@
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
+import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
 
 /**
  * 気象庁のAPIと通信するRepository
