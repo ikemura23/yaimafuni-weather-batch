@@ -1,10 +1,8 @@
-import kotlinx.coroutines.runBlocking
+import service.TimeSeriesWeatherService
 
 fun main() {
     val repository = JmaRepository(
         HttpClientProvider
     )
-    runBlocking {
-        repository.fetch()
-    }
+    TimeSeriesWeatherService(repository).start()
 }
