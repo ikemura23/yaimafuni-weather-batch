@@ -2,7 +2,7 @@ import timeseries.service.TimeSeriesService
 
 fun main() {
     val repository = JmaRepository(
-        HttpClientProvider
+        HttpClientProvider.create()
     )
     TimeSeriesService(repository).start()
 }
