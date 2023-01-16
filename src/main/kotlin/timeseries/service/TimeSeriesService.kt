@@ -17,6 +17,9 @@ class TimeSeriesService(
         runBlocking {
             val timeSeriesWeather = jmaRepository.fetchTimeSeries()
             println("timeSeriesWeather: $timeSeriesWeather")
+
+            val weatherWarning = jmaRepository.fetchWeatherWarning()
+            println("weatherWarning: $weatherWarning")
         }
     }
 }
