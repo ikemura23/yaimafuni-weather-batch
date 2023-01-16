@@ -1,4 +1,4 @@
-package service
+package timeseries.service
 
 import JmaRepository
 import kotlinx.coroutines.runBlocking

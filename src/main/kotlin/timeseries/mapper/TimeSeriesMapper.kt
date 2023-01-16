@@ -1,6 +1,8 @@
-import model.TimeSeries
-import model.TimeSeriesItem
-import model.Wind
+package timeseries.mapper
+
+import timeseries.model.TimeSeries
+import timeseries.model.TimeSeriesItem
+import timeseries.model.Wind
 import org.json.JSONArray
 import org.json.JSONObject
 

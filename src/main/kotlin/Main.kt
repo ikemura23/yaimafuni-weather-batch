@@ -1,4 +1,4 @@
-import service.TimeSeriesService
+import timeseries.service.TimeSeriesService
 
 fun main() {
     val repository = JmaRepository(

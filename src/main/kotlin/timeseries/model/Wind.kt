@@ -1,4 +1,4 @@
-package model
+package timeseries.model
 
 /**
  * 風

@@ -1,5 +1,6 @@
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
+import timeseries.mapper.TimeSeriesMapper
 
 /**
  * 気象庁のAPIと通信するRepository
