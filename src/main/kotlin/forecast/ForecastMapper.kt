@@ -13,30 +13,32 @@ class ForecastMapper {
         val reportDateTime = (jsonArray.first() as JSONObject).getString("reportDatetime")
         val publishingOffice = (jsonArray.first() as JSONObject).getString("publishingOffice")
 
-        val timeSeries = (jsonArray.first() as JSONObject).getJSONArray("timeSeries")
-        // println("timeSeries: $timeSeries")
-        val todayTimeSeries: JSONObject = timeSeries.first() as JSONObject
-        println("todayTimeSeries: $todayTimeSeries")
         // 2件の配列が入ってる、0は今日、1が明日
-        val timeDefines: List<String> = (timeSeries.first() as JSONObject).getJSONArray("timeDefines").map { it.toString() }
-        // areasには2件入っている、最初が石垣で次は与那国
-        val areas: JSONArray = (timeSeries.first() as JSONObject).getJSONArray("areas")
-        println("areas: $areas")
+        val timeSeries: JSONArray = (jsonArray.first() as JSONObject).getJSONArray("timeSeries")
+        val areas: JSONArray = (timeSeries.first() as JSONObject).getJSONArray("areas") as JSONArray
 
-        val ishigaskiArea = areas.first() as JSONObject
-        val todayWaves = ishigaskiArea.getJSONArray("waves").first().toString()
-        val todayWeather = ishigaskiArea.getJSONArray("weathers").first().toString()
-        val todayWind = ishigaskiArea.getJSONArray("winds").first().toString()
-        println(todayWaves)
-        println(todayWeather)
-        println(todayWind)
+        val todayForecast = getIshigakiForecast(areas.first() as JSONObject)
+        val tomorrowForecast = getIshigakiForecast(areas[1] as JSONObject)
 
         return Forecast(
             reportDateTime = reportDateTime,
             publishingOffice = publishingOffice,
-            weather = todayWaves,
-            wind = todayWind,
-            wave = todayWaves
+            forecasts = listOf(todayForecast, tomorrowForecast)
+        )
+    }
+
+    /**
+     * 石垣の天気予報（天気・風・波）を取得
+     */
+    private fun getIshigakiForecast(jsonObject: JSONObject): ForecastItem {
+        val waves = jsonObject.getJSONArray("waves").first().toString()
+        val weather = jsonObject.getJSONArray("weathers").first().toString()
+        val wind = jsonObject.getJSONArray("winds").first().toString()
+
+        return ForecastItem(
+            weather = weather,
+            wind = wind,
+            wave = waves
         )
     }
 }
