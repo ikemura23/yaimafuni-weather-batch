@@ -1,3 +1,5 @@
+import forecast.Forecast
+import forecast.ForecastMapper
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
@@ -36,5 +38,15 @@ class JmaRepository(
         if (isDebug) println("bodyAsText: ${httpResponse.bodyAsText()}")
         val mapper = WeatherWarningMapper()
         return mapper.fromJson(httpResponse.bodyAsText())
+    }
+
+    /**
+     * 天気予報（天気、風、波）を取得する
+     */
+    suspend fun fetchForecast(): Forecast {
+        val httpResponse = httpClient.get("https://www.jma.go.jp/bosai/forecast/data/forecast/474000.json")
+        if (isDebug) println("httpResponse: $httpResponse")
+        if (isDebug) println("bodyAsText: ${httpResponse.bodyAsText()}")
+        return ForecastMapper().fromJson(httpResponse.bodyAsText())
     }
 }

@@ -17,6 +17,9 @@ class MainApplication(
 
             val weatherWarning = jmaRepository.fetchWeatherWarning()
             println("weatherWarning: $weatherWarning")
+
+            val forecast = jmaRepository.fetchForecast()
+            println("forecast: $forecast")
         }
     }
 }
